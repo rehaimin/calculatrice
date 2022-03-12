@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'bootstrap-icons';
+    src: url('../fonts/bootstrap-icons.woff'), url('../fonts/bootstrap-icons.woff2');
+}
+
+#backSpace::after {
+    font-family: 'bootstrap-icons';
+    content: '\F159';
+}
+
+body {
+    background-color: #000;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 400px;
+    height: 460px;
+    margin: 20px auto;
+    background-color: rgb(39, 39, 39);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
+}
+
+form {
+    margin: 40px 0;
+    width: 350px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+form * {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: none;
+    font-size: 1.2em;
+}
+
+#screen {
+    width: 100%;
+    height: 120px;
+    background-color: rgb(58, 56, 56);
+}
+
+input {
+    margin: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    color: #FFF;
+    outline: none;
+    text-align: right;
+}
+
+input:nth-child(1) {
+    font-size: 1.3em;
+    height: 70px;
+    padding: 30px 10px 10px;
+}
+
+input:nth-child(2) {
+    font-size: 1em;
+    height: 50px;
+    padding: 0 10px;
+}
+
+button {
+    width: 22%;
+    height: 40px;
+    box-shadow: 0 0 7.5px rgba(200, 200, 200, 0.5);
+}
+
+button:active {
+    box-shadow: none;
+    font-weight: 900;
+}
+
+.dark {
+    background-color: rgb(58, 56, 56);
+    color: #FFF;
+}
+
+.lightGreen {
+    background-color: rgb(159, 226, 226);
+}
+
+.lightBlue {
+    background-color: rgb(76, 181, 252);
+}
