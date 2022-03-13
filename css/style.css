@@ -18,7 +18,7 @@ body {
 
 .container {
     width: 400px;
-    height: 460px;
+    height: 560px;
     margin: 20px auto;
     background-color: rgb(39, 39, 39);
     border-radius: 15px;
@@ -30,15 +30,15 @@ body {
 }
 
 form {
-    margin: 40px 0;
-    width: 350px;
+    margin: 7% 0;
+    width: 87.5%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
 form * {
-    margin-bottom: 20px;
+    margin-bottom: 7%;
     border-radius: 20px;
     border: none;
     font-size: 1.2em;
@@ -72,9 +72,10 @@ input:nth-child(2) {
 }
 
 button {
-    width: 22%;
-    height: 40px;
+    width: 20.1%;
+    height: 55px;
     box-shadow: 0 0 7.5px rgba(200, 200, 200, 0.5);
+    outline: none;
 }
 
 button:active {

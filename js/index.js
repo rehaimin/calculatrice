@@ -5,12 +5,16 @@ let keyValue;
 let btnId;
 let tmp;
 let lastOperatorTyped;
-let keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '÷', 'x', '-', '+', '%'];
+let lastKey;
+let leftParenthese = false;
+let keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '÷', 'x', '-', '+', '%'];
+let operatorsKeys = ['+', '-', 'x', '÷'];
 
 function showResult() {
     tmp = calculInput.value;
-    tmp = tmp.replace(/x/g, '*').replace(/÷/g, '/');
-    if (tmp.endsWith('+') || tmp.endsWith('-') || tmp.endsWith('*') || tmp.endsWith('/')) tmp = tmp.slice(0, -1);
+    tmp = tmp.replace(/x/g, '*').replace(/÷/g, '/').replace(/%/g, '/100');
+    if (tmp.endsWith('+') || tmp.endsWith('-') || tmp.endsWith('*') || tmp.endsWith('/') || tmp.endsWith('(')) tmp = tmp.slice(0, -1);
+    console.log(tmp);
     (eval(tmp) != undefined) ? resultInput.value = eval(tmp): resultInput.value = "";
 }
 
@@ -18,6 +22,8 @@ function clearCalculator() {
     calculInput.value = "";
     resultInput.value = "";
     lastOperatorTyped = "";
+    lastKey = "";
+    leftParenthese = false;
 }
 
 function backSpace() {
@@ -30,15 +36,22 @@ function calculate(e) {
     keyValue = e.target.getAttribute('key');
     btnId = e.target.getAttribute('id');
     if (keyValue) {
-        if (keyValue == "+" || keyValue == "-" || keyValue == "x" || keyValue == "÷") {
-            lastOperatorTyped = keyValue;
+        if (!leftParenthese && keyValue == '()') {
+            keyValue = '(';
+            leftParenthese = true;
+        } else if (leftParenthese && keyValue == '()') {
+            keyValue = ')'
+            leftParenthese = false;
         }
         calculInput.value = calculInput.value + keyValue;
         showResult();
+        if (operatorsKeys.includes(keyValue)) lastOperatorTyped = keyValue;
+        lastKey = keyValue;
     }
     if (btnId) {
         switch (btnId) {
             case "AC":
+                console.log(btnId);
                 clearCalculator();
                 break;
             case "backSpace":
@@ -55,9 +68,11 @@ function calculate(e) {
     }
     e.target.blur();
 }
+
+
 formElement.addEventListener('click', calculate);
 
-window.addEventListener('keydown', (event) => {
+function keyboardKeysTyping(event) {
     console.log(event.key);
     if (keys.includes(event.key)) {
         event.preventDefault();
@@ -88,4 +103,6 @@ window.addEventListener('keydown', (event) => {
                 break;
         }
     }
-});
+}
+
+window.addEventListener('keydown', keyboardKeysTyping)
