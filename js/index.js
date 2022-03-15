@@ -18,7 +18,17 @@ function showHistory() {
             document.getElementById('result' + i).innerText = history[i].result
         }
     }
-    document.querySelector('.history').classList.toggle('show');
+
+    if (document.querySelector('.history').classList.contains('showAnimation')) {
+        document.querySelector('.history').classList.toggle('hideAnimation');
+        setTimeout(() => {
+            document.querySelector('.history').classList.toggle('show');
+        }, 250);
+    } else {
+        document.querySelector('.history').classList.toggle('show');
+        document.querySelector('.history').classList.toggle('showAnimation');
+        set
+    }
 }
 document.querySelector('.menuBtn').addEventListener('click', showHistory)
 
@@ -50,6 +60,11 @@ function backSpace() {
 }
 
 function equal() {
+    calculInput.value = resultInput.value;
+    resultInput.value = "";
+}
+
+function saveHistory() {
     let calculation = calculInput.value;
     let result = resultInput.value;
     let historyObject = {
@@ -60,8 +75,6 @@ function equal() {
     if (history.length > 3) {
         history.shift();
     }
-    calculInput.value = resultInput.value;
-    resultInput.value = "";
     localStorage.setItem('history', JSON.stringify(history));
 }
 
@@ -84,7 +97,6 @@ function calculate(e) {
     if (btnId) {
         switch (btnId) {
             case "AC":
-                console.log(btnId);
                 clearCalculator();
                 break;
             case "backSpace":
@@ -92,6 +104,7 @@ function calculate(e) {
                 showResult();
                 break;
             case "equal":
+                saveHistory();
                 equal();
                 break;
             default:

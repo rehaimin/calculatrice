@@ -3,6 +3,28 @@
     src: url('../fonts/bootstrap-icons.woff'), url('../fonts/bootstrap-icons.woff2');
 }
 
+@keyframes show {
+    from {
+        width: 0;
+        height: 0;
+    }
+    to {
+        width: 80%;
+        height: 320px;
+    }
+}
+
+@keyframes hide {
+    from {
+        width: 80%;
+        height: 320px;
+    }
+    to {
+        width: 0;
+        height: 0;
+    }
+}
+
 #backSpace::after {
     font-family: 'bootstrap-icons';
     content: '\F159';
@@ -59,7 +81,8 @@ form * {
 }
 
 .history {
-    width: 60%;
+    width: 80%;
+    height: 320px;
     padding: 15px;
     position: absolute;
     top: 30px;
@@ -68,9 +91,8 @@ form * {
     border-radius: 15px;
     color: #fff;
     box-shadow: 0 0 5px rgba(200, 200, 200, 0.15);
-    transition-property: 'display';
-    transition-duration: 3s;
     display: none;
+    overflow: hidden;
 }
 
 .history * {
@@ -144,4 +166,12 @@ button:active {
 
 .show {
     display: block;
+}
+
+.showAnimation {
+    animation: show .25s linear;
+}
+
+.hideAnimation {
+    animation: hide .25s linear;
 }
