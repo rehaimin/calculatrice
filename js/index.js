@@ -57,6 +57,9 @@ function equal() {
         result: result,
     }
     history.push(historyObject);
+    if (history.length > 3) {
+        history.shift();
+    }
     calculInput.value = resultInput.value;
     resultInput.value = "";
     localStorage.setItem('history', JSON.stringify(history));
