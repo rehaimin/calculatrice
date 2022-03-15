@@ -178,3 +178,10 @@ button:active {
 .hideAnimation {
     animation: hide .25s linear;
 }
+
+@media screen and (max-width: 400px) {
+    .container {
+        width: 100%;
+        height: fit-content;
+    }
+}
