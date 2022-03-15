@@ -10,14 +10,14 @@
     }
     to {
         width: 80%;
-        height: 320px;
+        height: 340px;
     }
 }
 
 @keyframes hide {
     from {
         width: 80%;
-        height: 320px;
+        height: 340px;
     }
     to {
         width: 0;
@@ -82,7 +82,7 @@ form * {
 
 .history {
     width: 80%;
-    height: 320px;
+    height: 340px;
     padding: 15px;
     position: absolute;
     top: 30px;
@@ -110,12 +110,15 @@ form * {
     font-size: 0.9em;
 }
 
-#result0::after,
-#result1::after {
+p[id*='calcul']::before {
     display: block;
-    margin: 12px -15px 0 -12px;
+    margin: 12px -15px 12px -12px;
     content: "";
     border-bottom: 1px solid rgb(51, 50, 50);
+}
+
+p[id*='result'] {
+    font-weight: 600;
 }
 
 input {

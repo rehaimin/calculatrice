@@ -11,7 +11,7 @@ let leftParenthese = false;
 let keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '÷', 'x', '-', '+', '%'];
 let operatorsKeys = ['+', '-', 'x', '÷'];
 
-function showHistory() {
+function showHideHistory() {
     if (history.length > 0) {
         for (let i = 0; i < history.length; i++) {
             document.getElementById('calcul' + i).innerText = history[i].calculation
@@ -20,17 +20,19 @@ function showHistory() {
     }
 
     if (document.querySelector('.history').classList.contains('showAnimation')) {
+        //hide history
         document.querySelector('.history').classList.toggle('hideAnimation');
         setTimeout(() => {
             document.querySelector('.history').classList.toggle('show');
         }, 250);
     } else {
+        //show history
         document.querySelector('.history').classList.toggle('show');
         document.querySelector('.history').classList.toggle('showAnimation');
         set
     }
 }
-document.querySelector('.menuBtn').addEventListener('click', showHistory)
+document.querySelector('.menuBtn').addEventListener('click', showHideHistory)
 
 let history = [];
 if (localStorage.getItem('history') != null) {
