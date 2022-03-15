@@ -1,6 +1,7 @@
 const calculInput = document.getElementById('calcul');
 const resultInput = document.getElementById('result');
 const formElement = document.querySelector('form');
+
 let keyValue;
 let btnId;
 let tmp;
@@ -9,6 +10,22 @@ let lastKey;
 let leftParenthese = false;
 let keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '÷', 'x', '-', '+', '%'];
 let operatorsKeys = ['+', '-', 'x', '÷'];
+
+function showHistory() {
+    if (history.length > 0) {
+        for (let i = 0; i < history.length; i++) {
+            document.getElementById('calcul' + i).innerText = history[i].calculation
+            document.getElementById('result' + i).innerText = history[i].result
+        }
+    }
+    document.querySelector('.history').classList.toggle('show');
+}
+document.querySelector('.menuBtn').addEventListener('click', showHistory)
+
+let history = [];
+if (localStorage.getItem('history') != null) {
+    history = history.concat(JSON.parse(localStorage.getItem('history')));
+}
 
 function showResult() {
     tmp = calculInput.value;
@@ -30,6 +47,19 @@ function backSpace() {
     if (calculInput.value != "") {
         calculInput.value = calculInput.value.slice(0, -1)
     }
+}
+
+function equal() {
+    let calculation = calculInput.value;
+    let result = resultInput.value;
+    let historyObject = {
+        calculation: calculation,
+        result: result,
+    }
+    history.push(historyObject);
+    calculInput.value = resultInput.value;
+    resultInput.value = "";
+    localStorage.setItem('history', JSON.stringify(history));
 }
 
 function calculate(e) {
@@ -59,8 +89,7 @@ function calculate(e) {
                 showResult();
                 break;
             case "equal":
-                calculInput.value = resultInput.value;
-                resultInput.value = "";
+                equal();
                 break;
             default:
                 break;
@@ -82,8 +111,7 @@ function keyboardKeysTyping(event) {
             case 'Enter':
             case '=':
                 event.preventDefault();
-                calculInput.value = resultInput.value;
-                resultInput.value = "";
+                equal();
                 break;
             case 'Escape':
             case 'Esc':

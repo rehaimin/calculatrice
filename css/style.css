@@ -48,6 +48,52 @@ form * {
     width: 100%;
     height: 120px;
     background-color: rgb(58, 56, 56);
+    position: relative;
+}
+
+.menuBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
+.history {
+    width: 60%;
+    padding: 15px;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background-color: rgb(43, 43, 43);
+    border-radius: 15px;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(200, 200, 200, 0.15);
+    transition-property: 'display';
+    transition-duration: 3s;
+    display: none;
+}
+
+.history * {
+    font-size: 0.9em;
+}
+
+.content {
+    text-align: right;
+}
+
+.menuBtn::after {
+    font-family: 'bootstrap-icons';
+    content: "\F5D3";
+    color: rgb(113, 113, 113);
+    font-size: 0.9em;
+}
+
+#result0::after,
+#result1::after {
+    display: block;
+    margin: 12px -15px 0 -12px;
+    content: "";
+    border-bottom: 1px solid rgb(51, 50, 50);
 }
 
 input {
@@ -94,4 +140,8 @@ button:active {
 
 .lightBlue {
     background-color: rgb(76, 181, 252);
+}
+
+.show {
+    display: block;
 }
