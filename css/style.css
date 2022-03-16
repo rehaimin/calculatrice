@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'bootstrap-icons';
-    src: url('../fonts/bootstrap-icons.woff'), url('../fonts/bootstrap-icons.woff2');
+    src: url('../fonts/bootstrap-icons.woff');
 }
 
 @keyframes show {
@@ -10,14 +10,14 @@
     }
     to {
         width: 80%;
-        height: 340px;
+        height: 360px;
     }
 }
 
 @keyframes hide {
     from {
         width: 80%;
-        height: 340px;
+        height: 360px;
     }
     to {
         width: 0;
@@ -52,6 +52,13 @@ body {
     box-shadow: 0 0 10px rgba(200, 200, 200, 0.5);
 }
 
+#screen {
+    width: 100%;
+    height: 120px;
+    background-color: rgb(58, 56, 56);
+    position: relative;
+}
+
 form {
     margin: 7% 0;
     width: 87.5%;
@@ -67,11 +74,25 @@ form * {
     font-size: 1.2em;
 }
 
-#screen {
+input {
+    margin: 0;
     width: 100%;
-    height: 120px;
-    background-color: rgb(58, 56, 56);
-    position: relative;
+    background-color: rgba(0, 0, 0, 0);
+    color: #FFF;
+    outline: none;
+    text-align: right;
+}
+
+input:nth-child(1) {
+    font-size: 1.3em;
+    height: 70px;
+    padding: 30px 10px 10px;
+}
+
+input:nth-child(2) {
+    font-size: 1em;
+    height: 50px;
+    padding: 0 10px;
 }
 
 .menuBtn {
@@ -83,7 +104,7 @@ form * {
 
 .history {
     width: 80%;
-    height: 340px;
+    height: 360px;
     padding: 15px;
     position: absolute;
     top: 30px;
@@ -106,7 +127,7 @@ form * {
 
 .menuBtn::after {
     font-family: 'bootstrap-icons';
-    content: "\F5D3";
+    content: '\F292';
     color: rgb(113, 113, 113);
     font-size: 0.9em;
 }
@@ -122,25 +143,9 @@ p[id*='result'] {
     font-weight: 600;
 }
 
-input {
-    margin: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    color: #FFF;
-    outline: none;
-    text-align: right;
-}
-
-input:nth-child(1) {
-    font-size: 1.3em;
-    height: 70px;
-    padding: 30px 10px 10px;
-}
-
-input:nth-child(2) {
-    font-size: 1em;
-    height: 50px;
-    padding: 0 10px;
+.overFlow {
+    overflow-y: auto;
+    overflow-wrap: break-word;
 }
 
 button {

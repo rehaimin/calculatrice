@@ -1,6 +1,7 @@
 const calculInput = document.getElementById('calcul');
 const resultInput = document.getElementById('result');
 const formElement = document.querySelector('form');
+const historyDiv = document.querySelector('.history');
 
 let keyValue;
 let btnId;
@@ -19,17 +20,21 @@ function showHideHistory() {
         }
     }
 
-    if (document.querySelector('.history').classList.contains('showAnimation')) {
+    if (historyDiv.classList.contains('showAnimation')) {
         //hide history
-        document.querySelector('.history').classList.toggle('hideAnimation');
+        historyDiv.classList.remove('overFlow');
+        historyDiv.classList.replace('showAnimation', 'hideAnimation');
         setTimeout(() => {
-            document.querySelector('.history').classList.toggle('show');
+            historyDiv.classList.toggle('show');
         }, 250);
     } else {
         //show history
-        document.querySelector('.history').classList.toggle('show');
-        document.querySelector('.history').classList.toggle('showAnimation');
-        set
+        historyDiv.classList.toggle('show');
+        historyDiv.classList.remove('hideAnimation');
+        historyDiv.classList.add('showAnimation');
+        setTimeout(() => {
+            historyDiv.classList.add('overFlow');
+        }, 250);
     }
 }
 document.querySelector('.menuBtn').addEventListener('click', showHideHistory)
@@ -43,7 +48,6 @@ function showResult() {
     tmp = calculInput.value;
     tmp = tmp.replace(/x/g, '*').replace(/÷/g, '/').replace(/%/g, '/100');
     if (tmp.endsWith('+') || tmp.endsWith('-') || tmp.endsWith('*') || tmp.endsWith('/') || tmp.endsWith('(')) tmp = tmp.slice(0, -1);
-    console.log(tmp);
     (eval(tmp) != undefined) ? resultInput.value = eval(tmp): resultInput.value = "";
 }
 
@@ -120,7 +124,6 @@ function calculate(e) {
 formElement.addEventListener('click', calculate);
 
 function keyboardKeysTyping(event) {
-    console.log(event.key);
     if (keys.includes(event.key)) {
         event.preventDefault();
         document.querySelector("button[key='" + event.key + "']").click();
@@ -129,6 +132,7 @@ function keyboardKeysTyping(event) {
             case 'Enter':
             case '=':
                 event.preventDefault();
+                saveHistory();
                 equal();
                 break;
             case 'Escape':
@@ -144,6 +148,10 @@ function keyboardKeysTyping(event) {
                 break;
             case '*':
                 document.querySelector("button[key='x']").click();
+                break;
+            case '(':
+            case ')':
+                document.querySelector("button[key='()']").click();
                 break;
             default:
                 break;
